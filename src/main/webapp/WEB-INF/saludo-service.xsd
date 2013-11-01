@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="qualified"
+	targetNamespace="http://localhost:18080/com/codelious/saludows/saludar-service"
+	xmlns:tns="http://localhost:18080/com/codelious/saludows/saludar-service">
+
+	<element name="SaludoRequest">
+		<complexType>
+			<sequence>
+				<element type="string" name="nombre" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="SaludoResponse">
+		<complexType>
+			<sequence>
+				<element type="string" name="saludo" />
+			</sequence>
+		</complexType>
+	</element>
+	
+</schema>

@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans    
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	
+    <bean id="saludarService" class="com.codelious.saludows.servicio.SaludarServiceImpl">
+    </bean>
+
+    <bean id="saludarServiceEndpoint"
+        class="com.codelious.saludows.endpoint.SaludarServiceEndPoint">
+        <property name="saludarService" ref="saludarService" />
+    </bean>
+
+    <bean id="payloadMapping"
+        class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+        <property name="defaultEndpoint" ref="saludarServiceEndpoint" />
+    </bean>
+
+    <bean id="saludarSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="/WEB-INF/saludo-service.xsd" />
+    </bean>
+
+    <bean id="saludar"
+        class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="saludarSchema" />
+        <property name="portTypeName" value="saludar" />
+        <property name="locationUri"
+            value="http://localhost:18080/SaludoWS/services" />
+    </bean>
+
+</beans>
